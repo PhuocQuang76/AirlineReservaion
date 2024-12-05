@@ -1,0 +1,38 @@
+ul li{
+  display: inline;
+  font-size:18px;
+  color:blue;
+  margin-right:20px;
+}
+
+.bodyDiv{
+    margin-top: 150px;
+}
+
+.button {
+  font: bold 15px Arial;
+  text-decoration: none;
+  background-color: dodgerblue;
+  height:40px;
+  width:200px;
+  color: #333333;
+  padding: 5px 10px 5px 10px;
+  border-top: 1px solid #CCCCCC;
+  border-right: 1px solid #333333;
+  border-bottom: 1px solid #333333;
+  border-left: 1px solid #CCCCCC;
+}
+
+#tblFlight tr th {
+    color:white;
+}
+a{
+    color: #0d4270;
+    text-decoration: none;
+    font-size: larger;
+}
+a{
+    color: #0d4270;
+    text-decoration: none;
+    font-size: larger;
+}

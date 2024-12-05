@@ -1,0 +1,49 @@
+#foo {
+
+  height: 100%;
+  overflow-y: hidden;
+}
+
+#bar1 {
+  width: 30%;
+  height: 650px;
+
+     overflow: scroll;
+     float: left;
+     position: relative;
+
+  margin-left: 2em;
+  padding-top:100px;
+  background-color:#ADD8E6;
+  padding-bottom:100px;
+}
+#bar2 {
+  width: 65%;
+  height: 650px;
+  overflow: scroll;
+  float: left;
+  position: relative;
+
+  float: left;
+  padding-left: 20px;
+  margin-left:20px;
+  padding-top:100px;
+  background-color:#ADD8E6;
+  padding-bottom:100px;
+}
+
+table #tblFlight th{
+    font-size:20px;
+}
+
+#passengerList thead {
+    font-size:17px;
+}
+
+#passengerList tbody {
+    font-size:15px;
+}
+
+.hidden {
+  display: none;
+}

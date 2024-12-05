@@ -1,0 +1,343 @@
+ <tr>
+                    <td>Flight Airlines</td>
+                    <td><f:input type="text" path="flightAirlines" value="${flight.flightAirlines}" /></td>
+                </tr>
+                <tr>
+                    <td>Flight Departure City</td>
+                    <td><f:input type="text" path="flight.flightDepartureCity" value="${flight.flightDepartureCity}" /></td>
+                </tr>
+                <tr>
+                    <td>Flight Arrival City</td>
+                    <td><f:input type="text" path="flight.flightArrivalCity" value="${flight.flightArrivalCity}" /></td>
+                </tr>
+                <tr>
+                    <td>Flight Departure Date</td>
+                    <td><f:input type="date" path="flight.flightDepartureDate" value="${flight.flightDepartureDate}" /></td>
+                </tr>
+                <tr>
+                    <td>Flight Departure Time</td>
+                    <td><f:input type="time" path="flight.flightDepartureTime" value="${flight.flightDepartureTime}" /></td>
+                </tr>
+                <tr>
+                    <td>Flight Arrival Date</td>
+                    <td><f:input type="date" path="flight.flightArrivalDate" value="${flight.flightArrivalDate}" /></td>
+                </tr>
+                <tr>
+                    <td>Flight Arrival Time</td>
+                    <td><f:input type="time" path="flight.flightArrivalTime" value="${flight.flightArrivalTime}" /></td>
+                </tr>
+                <tr>
+                    <td>Flight Capacity</td>
+                    <td><f:input type="number" path="flight.flightCapacity" value="${flight.flightCapacity}" /></td>
+                </tr>
+                <tr>
+                    <td>Flight Price</td>
+                    <td><f:input type="number" path="flight.flightPrice" value="${flight.flightPrice}" /></td>
+                </tr>
+                <tr>
+                    <td>Flight Seats Booked</td>
+                    <td><f:input type="number" path="flight.flightSeatsBooked" value="${flight.flightSeatsBooked}" /></td>
+                </tr>
+
+
+                //************* Airline
+                <tr>
+                    <td>Flights</td>
+                    <td>
+                    <f:select path="airlineFlights" id="dropdown">
+                        <c:forEach items="${airline.airlineFlights}" var="alF">
+                            <c:if test="${selectedAirlineFlights.contains(alF)}">
+                                <f:option  value="${alF}" selected="true">Test</f:option>
+                            </c:if>
+                            <c:if test="${!selectedAirlineFlights.contains(alF)}">
+                                <f:option value="${alF}">Test</f:option>
+                            </c:if>
+                        </c:forEach>
+                    </f:select>
+                    </td>
+                </tr>
+
+
+                //*************
+
+<tr>
+                    <td>Checked in</td>
+                    <td>
+                        <c:forEach items="${checkedInVals}" var="ch">
+                            <c:choose>
+                                <c:when test="${selectedCheckIn==ch}">
+                                    <f:radiobutton path="checkedIn" name="checkedIn" label="${ch}" value="${ch}" checked="true"/>
+                                </c:when>
+                                <c:otherwise>
+                                    <f:radiobutton path="checkedIn" name="checkedIn" label="${ch}" value="${ch}"/>
+                                </c:otherwise>
+                            </c:choose>
+                        </c:forEach>
+                    </td>
+
+
+                    //*************
+
+
+<tr>
+                    <td>Passenger</td>
+                    <td>
+                    <f:select  path="passenger" id="dropdown">
+                        <c:forEach items="${passengerIds}" var="pId">
+                            <c:if test="${selectedPassenger.contains(pId)}">
+                                <f:option  value="${pId}" selected="true">${pId}</f:option>
+                            </c:if>
+                            <c:if test="${!selectedPassenger.contains(pId)}">
+                                <f:option value="${pId}">${pId}</f:option>
+                            </c:if>
+                        </c:forEach>
+                    </f:select>
+                    </td>
+                </tr>
+
+
+                <tr>
+                    <td>Flight</td>
+                    <td>
+                    <f:select path="flight" id="dropdown">
+                        <c:forEach items="${flightIds}" var="fNo">
+                            <c:if test="${selectedFlight.contains(fNo)}">
+                                <f:option  value="${fNo}" selected="true">${fNo}</f:option>
+                            </c:if>
+                            <c:if test="${!selectedFlight.contains(fNo)}">
+                                <f:option value="${fNo}">${fNo}</f:option>
+                            </c:if>
+                        </c:forEach>
+                    </f:select>
+                    </td>
+                </tr>
+sessionFactory.setAnnotatedPackages("com.synergisticit.domain");
+        sessionFactory.setAnnotatedClasses(Flight.class, Airline.class, Airport.class, Passenger.class, User.class,Role.class, Reservation.class);
+
+        ------------
+
+                let reservationNo = $(this).parent().parent().children("td").eq(0).text();
+                let passengerNo =  $(this).parent().parent().children("td").eq(1).text();
+                let flightNo =  $(this).parent().parent().children("td").eq(2).text();
+                let checkedInBags = $(this).parent().parent().children("td").eq(3).text();
+                let status = $(this).parent().parent().children("td").eq(4).text();
+
+                $('#reservationNo').val();
+                $('#passengerId').val();
+                $('#flightId').val();
+                $('#checkedInBags').val();
+
+
+  ---------------
+  <f:input path="flightId" id="flightId" value="${flightId}"/><br/>
+
+          <label for="passengerFirstName">First Name:</label>
+          <f:input path="passengerFirstName" id="passengerFirstName"/><br/>
+
+          <label for="passengerLastName">Last Name:</label>
+          <f:input path="passengerLastName" id="passengerLastName"/><br/>
+
+          <label for="passengerEmail">Email:</label>
+          <f:input path="passengerEmail" id="passengerEmail"/><br/>
+
+          <label for="passengerPhoneNo">Phone Number:</label>
+          <f:input path="passengerPhoneNo" id="passengerPhoneNo"/><br/>
+
+          <label for="passengerGender">Gender:</label>
+          <f:select path="passengerGender" id="passengerGender">
+              <form:option value="MALE">Male</form:option>
+              <form:option value="FEMALE">Female</form:option>
+              <form:option value="OTHER">Other</form:option>
+          </f:select><br/>
+          <label for="passengerDOB">Date of Birth:</label>
+          <form:input path="passengerDOB" id="passengerDOB"/><br/>
+
+          <!-- Embedded Address fields -->
+          <label for="passengerAddress.addressLine1">Address Line 1:</label>
+          <f:input path="passengerAddress.addressLine1" id="passengerAddress.addressLine1"/><br/>
+
+          <label for="passengerAddress.city">City:</label>
+          <f:input path="passengerAddress.city" id="passengerAddress.city"/><br/>
+
+          <label for="passengerAddress.state">State:</label>
+          <f:input path="passengerAddress.state" id="passengerAddress.state"/><br/>
+
+          <label for="passengerAddress.zipCode">Zip Code:</label>
+          <f:input path="passengerAddress.zipCode" id="passengerAddress.zipCode"/><br/>
+=====
+
+
+<table border="1">
+
+<tr>
+                <th>passengerId</th>
+                <th>passengerFirstName</th>
+                <th>passengerLastName</th>
+                <th>passengerEmail</th>
+                <th>passengerPhoneNo</th>
+                <th>passengerGender</th>
+                <th>passengerDOB</th>
+                <th>passengerAddress</th>
+            </tr>
+            <c:forEach items="${passengers}" var="passenger">
+            <tr>
+                <td>${passenger.passengerId}</td>
+                <td>${passenger.passengerFirstName}</td>
+                <td>${passenger.passengerLastName}</td>
+                <td>${passenger.passengerEmail}</td>
+                <td>${passenger.passengerPhoneNo}</td>
+                <td>${passenger.passengerGender}</td>
+                <td>${passenger.passengerDOB}</td>
+                <td>
+                    ${passenger.passengerAddress.addressLine1} ${passenger.passengerAddress.addressLine2} ${passenger.passengerAddress.city} ${passenger.passengerAddress.zipcode}
+                </td>
+
+            </tr>
+            </c:forEach>
+            </table>
+
+ -------
+ <br>
+         <hr>
+         <h1>Reservation List</h1>
+         <table id="tbl_reservation" border="1">
+             <tr>
+                 <th>Number</th>
+                 <th>Flight ID</th>
+                 <th>Checked Bags</th>
+                 <th>CheckIn Status</th>
+                 <sec:authorize access="hasAnyAuthority('ADMIN','admin','Admin')">
+                     <td>Action</td>
+                 </sec:authorize>
+             </tr>
+
+
+         </table>
+--------
+       $('#findPassengers').click(function(event) {
+            openModalFunction();
+        });
+
+        $(document).on('click', '.closeCheckInModal', function() {
+            // Close the modal when the close button is clicked
+            $('#confirmCheckin').hide();
+        });
+
+        function openModalFunction(f) {
+
+            $('#confirmCheckin').show();
+        }
+------
+
+<td><input type="submit" class="tbl_checkIn btn btn-primary" value="CheckIn" /></td>
+
+                    <td>
+                        <form id="updateForCheckIn" action="confirmCheckin" method="PUT">
+                            <!-- Other form fields here -->
+                            <input type="hidden" name="reservationId" value="${r.reservationNumber}" />
+
+                            <input type="submit" class="btn btn-primary" value="CheckIn" />
+                        </form>
+                    </td>
+-------
+-
+----------
+SEARCH FLIGHT
+<h1>FLight List</h1>
+        <table border="1" id="tblFlightList">
+            <tr>
+                <th><a href="javascript:sortTable2(0)">Id</a></th>
+                <th><a href="javascript:sortTable2(1)">Number</a></th>
+                <th><a href="javascript:sortTable2(2)">Airline</a></th>
+                <th><a href="javascript:sortTable2(3)">DepartureCity</a></th>
+                <th><a href="javascript:sortTable2(4)">DepartureDate</a></th>
+                <th><a href="javascript:sortTable2(5)">DepartureTime</a></th>
+                <th><a href="javascript:sortTable2(6)">ArrivalCity</a></th>
+                <th><a href="javascript:sortTable2(7)">ArrivalDate</a></th>
+                <th><a href="javascript:sortTable2(8)">ArrivalTime</a></th>
+                <th><a href="javascript:sortTable2(9)">Capacity</a></th>
+                <th><a href="javascript:sortTable2(10)">Price</a></th>
+                <th><a href="javascript:sortTable2(11)">SeatsBooked</a></th>
+                <th>Book Flight</th>
+            </tr>
+            <c:forEach items="${flights}" var="f">
+                <tr>
+                    <td>${f.getFlightId()}</td>
+                    <td>${f.getFlightNumber()}</td>
+                    <td>${f.getFlightAirline().getAirlineId()}</td>
+                    <td>${f.getFlightDepartureCity()}</td>
+                    <td>${f.getFlightDepartureDate()}</td>
+                    <td>${f.getFlightDepartureTime()}</td>
+                    <td>${f.getFlightArrivalCity()}</td>
+                    <td>${f.getFlightArrivalDate()}</td>
+                    <td>${f.getFlightArrivalTime()}</td>
+                    <td>${f.getFlightCapacity()}</td>
+                    <td>${f.getFlightPrice()}</td>
+                    <td>${f.getFlightSeatsBooked()}</td>
+
+                    <td>
+                    <form action="reservationForm" method="GET">
+                        <!-- Other form fields here -->
+                        <input type="hidden" name="flightId" value="${f.getFlightId()}" />
+                        <input type="submit" value="Book" />
+                    </form>
+                    </td>
+                </tr>
+                </tr>
+            </c:forEach>
+
+        </table>
+-----------
+
+$("#searchFlights").click(function(event) {
+            event.preventDefault(); // Prevent form submission
+
+            // Get form data
+            var formData = new FormData();
+
+            let flightDepartureCity = $("#flightDepartureCity").val();
+            let flightArrivalCity = $("#flightArrivalCity").val();
+            let flightDepartureDateStart = $("#flightDepartureDateStart").val();
+            let flightDepartureDateEnd = $("#flightDepartureDateEnd").val();
+
+            formData.append('flightDepartureCity', flightDepartureCity);
+            formData.append('flightArrivalCity', flightArrivalCity);
+            formData.append('flightDepartureDateStart', flightDepartureDateStart);
+            formData.append('flightDepartureDateEnd', flightDepartureDateEnd);
+
+
+            // Send AJAX request
+            $.ajax({
+                url: '/saveSearch',
+                type: 'POST',
+                data: formData,
+                processData: false,
+                contentType: false,
+                success: function(response) {
+                    SearchFlights = response;
+                    alert(SearchFlights);
+                    console.log('File uploaded successfully');
+                    alert("Claim added");
+
+                }
+            });
+        });
+
+-----------
+ROLES loop throught roles
+<tr>
+                    <td>Roles</td>
+                    <td>
+                        <c:forEach items="${userRole}" var="role">
+                            <c:if test="${retrievedRole.contains(role) }" >
+                                <f:checkbox path="roles" label="${role.roleName}" value="${role.roleId}" checked="true"/>
+                            </c:if>
+
+                            <c:if test="${!retrievedRole.contains(role) }" >
+                                <f:checkbox path="roles" label="${role.roleName}" value="${role.roleId}" />
+                            </c:if>
+                        </c:forEach>
+                    </td>
+                </tr>
+
+----------

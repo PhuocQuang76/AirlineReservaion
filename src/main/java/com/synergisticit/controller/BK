@@ -1,0 +1,60 @@
+$("#tblSearchFlight").append(
+    "<tr>"+
+       "<td>"+val.claimId+"</td>"+
+       "<td>"+userName+"</td>"+
+       "<td>" +val.claimTitle+"</td>"+
+       "<td>"+val.accidentDate+"</td>"+
+       "<td>" +val.itemDetailName+"</td>"+
+       "<td>" +val.itemCost+"</td>"+
+       "<td>" +val.fileName+"</td>"+
+       "<td>" +val.status+"</td>"+
+
+       "<td><a style='color:#00008B' class='tbl_approve' href='#'>Approve</a></td>"+
+       "<td><a style='color:#00008B' class='tbl_decline' href='#'>Decline</a></td>"+
+
+    "</tr>"
+)
+==========
+<label for="checkedBag">Number of check in bags</label>
+            <input type="text" id="checkedBag" name="checkedBag">
+
+            <br>
+            <label for="CheckIn">Check if a checked bag is required</label>
+            <input type="checkbox" id="checkIn" name="CheckIn">
+
+            --------
+ <c:forEach items="${reservations}" var="r">
+                 <tr>
+                     <td id="reservation_No" >${r.getReservationNumber()}</td>
+                     <td id="passenger_Id" >${r.getPassenger().getPassengerId()}</td>
+                     <td id="flight_Id" >${r.getFlight().getFlightId()}</td>
+                     <td id="checkedIn_Bags" >${r.getCheckedBags()}</td>
+                     <td id="checked_In" >${r.isCheckedIn()}</td>
+                     <sec:authorize access="hasAnyAuthority('ADMIN','admin','Admin')">
+                         <td><a class='checkedInBtn' href='#'>Check-In</a></td>
+                     </sec:authorize>
+                 </tr>
+
+             </c:forEach>
+ -------------
+ $("#confirm").click(function(){
+                 let reservationDTO = new Object()
+                 reservationDTO.reservationNumber = reservationId;
+                 reservationDTO.checkedBags = $("#checkedBag").val();
+                 reservationDTO.status = "CHECKEDIN";
+
+                 $.ajax({
+                     url: "/confirm/checkin",
+                     type: "PUT",
+                     dataType: "json",
+                     contentType: "application/json; charset=utf-8",
+                     data: JSON.stringify(reservationDTO),
+                     success: function (result) {
+                         console.log('File uploaded successfully');
+                         window.location.href = "http://localhost:9696/claimForm";
+                     },
+                     error: function(xhr, status, error) {
+                         console.error('Failed to upload file');
+                     }
+                 });
+             });
